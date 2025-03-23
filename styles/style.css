@@ -21,8 +21,7 @@ body {
 
 /*MAIN*/
 .main {
-    overflow: hidden;
-    position: relative;
+    min-height: calc(100vh - 90.7px);
 }
 
 
@@ -86,6 +85,8 @@ body {
     margin-right: 10px;
 }
 
+/* TABLE */
+
 table {
     width: 70%;
     margin: 20px auto;
@@ -104,6 +105,12 @@ th {
     background: #c9c8c8;
 }
 
+
+/* leaderboard */
+
+.leaderboard img {
+    width: 100%;
+}
 
 
 /*FOOTER*/
