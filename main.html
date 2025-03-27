@@ -4,123 +4,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Забег</title>
+    <title>LIMB</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="images/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <main class="main">
+    <div class="page">
         <header class="header">
             <div class="container">
                 <div class="logo">
-                    <img src="images/logo.jpg" alt="Logo">
+                    <img src="images/logo.png" alt="Logo">
                 </div>
-                <nav class="menu">
-                    <ul>
-                        <li>
-                            <a href="#limb">Лимб</a>
-                        </li>
-                        <li>
-                            <a href="#">Кабинет</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </header>
 
-        <div class="search-bar">
-            <img src="images/search.png" alt="🔍">
-            <input type="text" placeholder="Введите имя участника...">
-        </div>
-
-        <table class="table" id="limb">
+        <!-- Intro -->
+        <div class="intro" id="intro">
             <div class="container">
-                <h1>Статистика участников</h1>
-                <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Ник</th>
-                        <th>Цель на день</th>
-                        <th>Пн <br> 23.03.2025</th>
-                        <th>Вт <br> 23.03.2025</th>
-                        <th>Ср <br> 23.03.2025</th>
-                        <th>Чт <br> 23.03.2025</th>
-                        <th>Пт <br> 23.03.2025</th>
-                        <th>Сб <br> 23.03.2025</th>
-                        <th>Вс <br> 23.03.2025</th>
-                        <th>Страницы</th>
-                        <th>Слова</th>
-                        <th>Цель на неделю</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Здесь будут данные участников -->
-                    <tr>
-                        <td>1</td>
-                        <td>Minililliput</td>
-                        <td>1000</td>
-                        <td>0</td>
-                        <td>1324</td>
-                        <td>1234</td>
-                        <td>23</td>
-                        <td>456</td>
-                        <td>346</td>
-                        <td>4356</td>
-                        <td>25</td>
-                        <td>7000</td>
-                        <td>7000</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Drygnil</td>
-                        <td>3000</td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>✘</td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>30</td>
-                        <td>21 000</td>
-                        <td>18 000 слов</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Все</th>
-                        <th>Общая цель</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>123456</th>
-                        <th>70</th>
-                        <th>1000000</th>
-                        <th>100000</th>
-                    </tr>
-                </thead>
+                <div class="pram">
+                    <div class="text-box">
+                        <div class="text-content">
+                            <h3>ЖИЗНЬ С ПИСАТЕЛЬСТВОМ</h3>
+                            <h2>ЭТО НЕ ЗАБЕГ <br> ЭТО <span>ЖИЗНЬ<span></h2>
+                            <p>Вносим в жизнь самодисциплинирующий и соревновательный элемент.
+                                А табличка сама скажет, кто тут умничка. И пусть каждое слово приближает тебя к цели!
+                            </p>
+                            <a href="#participate" class="btn">Принять участие</a>
+                            <div class="participants"><span>10+</span> участников</div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-        </table>
+        </div><!-- /.intro -->
 
-        <div class="leaderboard">
+        <div class="data" id="participate">
             <div class="container">
-                <img src="images/leaderboard.png" alt="leaderboard">
+                <div class="line-top"></div>
+                <div class="rules-left">
+                    <div class="text">
+                        <h3>чтобы принять участие:</h3>
+                        <ol>
+                            <li>Каждую неделю список участников заполняется заново, записывайте себя.</li>
+                            <li>Когда вы запишите себя, во всех днях автоматически выставится 0.</li>
+                            <li>Установите себе личную цель слов в день.</li>
+                            <li>Пишите! ♥</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="line-btn"></div>
+                <div class="rules-right">
+                    <div class="text">
+                        <h3>Введите данные:</h3>
+                        <div class="button-top">
+                            <img src="images/pencil.png" alt="🔍">
+                            <input type="text" placeholder="Ник...">
+                        </div>
+                        <div class="button-btn">
+                            <div class="button-left">
+                                <img src="images/calendar.png" alt="🔍">
+                                <input type="text" placeholder="День...">
+                            </div>
+                            <div class="button-right">
+                                <img src="images/circle.png" alt="🔍">
+                                <input type="text" placeholder="Ник...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
-    <footer class="footer">
+    </div>
+
+    <!-- 
+    <table class="table" id="limb">
         <div class="container">
-            <div class="logo">
-                <img src="images/logo.jpg" alt="Logo" />
-            </div>
-            <div class="rights">© 2025 Все права защищены</div>
+            <h1>Статистика участников</h1>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Ник</th>
+                    <th>Цель на день</th>
+                    <th>Пн <br> 23.03.2025</th>
+                    <th>Вт <br> 23.03.2025</th>
+                    <th>Ср <br> 23.03.2025</th>
+                    <th>Чт <br> 23.03.2025</th>
+                    <th>Пт <br> 23.03.2025</th>
+                    <th>Сб <br> 23.03.2025</th>
+                    <th>Вс <br> 23.03.2025</th>
+                    <th>Страницы</th>
+                    <th>Слова</th>
+                    <th>Цель на неделю</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td>Minililliput</td>
+                    <td>1000</td>
+                    <td>0</td>
+                    <td>1324</td>
+                    <td>1234</td>
+                    <td>23</td>
+                    <td>456</td>
+                    <td>346</td>
+                    <td>4356</td>
+                    <td>25</td>
+                    <td>7000</td>
+                    <td>7000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Drygnil</td>
+                    <td>3000</td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>✘</td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>30</td>
+                    <td>21 000</td>
+                    <td>18 000 слов</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Все</th>
+                    <th>Общая цель</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>123456</th>
+                    <th>70</th>
+                    <th>1000000</th>
+                    <th>100000</th>
+                </tr>
+            </thead>
         </div>
-    </footer>
+    </table> -->
+
+    <!-- 
+        <footer class="footer">
+            <div class="container">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Logo">
+                </div>
+            </div>
+        </footer>
+    </div> -->
 
 </body>
 
