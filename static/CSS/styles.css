@@ -205,7 +205,7 @@ h6 {
 .data .rules-left .text h3,
 .data .rules-right .text h3 {
     font-size: 16px;
-    padding-top: 45px;
+    padding-top: 25px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
@@ -215,44 +215,9 @@ h6 {
     margin-bottom: 10px;
 }
 
+/* TEXT */
 
-/* INPUT */
-.input {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    width: 440px;
-    height: 140px;
-
-    margin: 0 auto;
-}
-
-.input .input-cont {
-    background-color: #ffffff;
-    margin: 10px;
-    width: 200px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    border: 1px solid #cccccc;
-    border-radius: 15px;
-}
-
-.input input {
-    background-color: #ffffff;
-    width: 150px;
-    height: 40px;
-    border: 1px solid #cccccc;
-    border-radius: 15px;
-
-    border: 1px solid #fff;
-    outline: none;
-    font-weight: 500;
-    font-size: 16px;
-    color: #131A24;
-}
-
-.input .btn {
+.text .btn {
     display: flex;
     justify-content: center;
     /* Центр по горизонтали */
@@ -263,8 +228,8 @@ h6 {
     color: white;
     width: 200px;
     height: 50px;
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 10px;
+    margin: 5px 197px 10px 197px;
 
     text-decoration: none;
     text-transform: uppercase;
@@ -272,6 +237,41 @@ h6 {
     font-weight: 700;
     line-height: 100%;
     letter-spacing: 2%;
+}
+
+/* INPUT */
+.input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 440px;
+    height: 120px;
+
+    margin: 0 auto;
+}
+
+.input .input-cont {
+    background-color: #ffffff;
+    margin: 10px 10px 0 10px;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #cccccc;
+    border-radius: 15px;
+}
+
+.input input {
+    background-color: #ffffff;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #cccccc;
+
+    border: 1px solid #fff;
+    outline: none;
+    font-weight: 500;
+    font-size: 16px;
+    color: #131A24;
 }
 
 .data .btn:hover:not(:disabled) {
@@ -290,6 +290,40 @@ h6 {
     margin: 0 9px;
 }
 
+/* Стили для выпадающего списка */
+.input-container {
+    position: relative;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #f8f6f6;
+    border-radius: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 150px;
+    /* Ограничиваем высоту */
+    overflow-y: auto;
+    /* Добавляем прокрутку, если нужно */
+    display: none;
+    /* Скрыто по умолчанию */
+    z-index: 999;
+}
+
+.dropdown-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-list li:hover {
+    background-color: #f0f0f0;
+}
+
 
 
 /* TABLE */
@@ -305,7 +339,7 @@ h6 {
     background-color: #F6DDE1;
     margin: 40px 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 130%;
     border-collapse: collapse;
@@ -314,6 +348,7 @@ h6 {
 .table tbody tr :nth-child(2) {
     text-align: left;
     font-weight: 700;
+    padding-left: 10px;
 }
 
 .table caption {
@@ -335,11 +370,11 @@ h6 {
     background-color: #FF6B6B;
 }
 
-.table .one {
+.table tbody tr:nth-child(odd) {
     background-color: #FFECEF;
 }
 
-.table .two {
+.table tbody tr:nth-child(even) {
     background-color: #fff;
 }
 
@@ -354,7 +389,7 @@ h6 {
     border: none;
 }
 
-/* LEADERBARD */
+/* LEADERBOARD */
 .leaderboard {
     display: flex;
     justify-content: center;

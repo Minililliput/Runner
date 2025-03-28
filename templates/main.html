@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIMB</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="static/images/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
         <header class="header" id="header">
             <div class="container">
                 <div class="logo">
-                    <img src="images/logo.png" alt="Logo">
+                    <img src="static/images/logo.png" alt="Logo">
                 </div>
             </div>
         </header>
@@ -64,36 +64,26 @@
                     <div class="text">
                         <h3>Введите данные:</h3>
                         <div class="input">
-                            <div class="input-cont">
-                                <img src="images/pencil.png" alt="🔍">
-                                <input type="text" required placeholder="Ник...">
+                            <div class="input-cont input-container">
+                                <img src="static/images/pencil.png" alt="🔍">
+                                <input id="nickname" type="text" required placeholder="Ник..." autocomplete="off">
+                                <ul id="nickname-list" class="dropdown-list" style="display:none;"></ul>
                             </div>
                             <div class="input-cont">
-                                <img src="images/calendar.png" alt="🔍">
-                                <input type="text" required placeholder="День...">
+                                <img src="static/images/calendar.png" alt="🔍">
+                                <input id="day" type="text" required placeholder="День...">
                             </div>
                             <div class="input-cont">
-                                <img src="images/circle.png" alt="🔍">
-                                <input type="text" required placeholder="Ник...">
+                                <img src="static/images/circle.png" alt="🔍">
+                                <input id="goal" name="goal" type="text" required placeholder="Цель...">
                             </div>
-                            <a href="#table" class="btn">Записаться</a>
+                            <div class="input-cont">
+                                <img src="static/images/write.png" alt="🔍">
+                                <input id="word-count" type="text" required placeholder="Количество слов...">
+                            </div>
                         </div>
+                        <a href="#table" class="btn" id="submit">Записаться</a>
 
-                        <!-- <div class="button-top">
-                            <img src="images/pencil.png" alt="🔍">
-                            <input type="text" required placeholder="Ник...">
-                        </div>
-                        <div class="button-btn">
-                            <div class="button-left">
-                                <img src="images/calendar.png" alt="🔍">
-                                <input type="text" required placeholder="День...">
-                            </div>
-                            <div class="button-right">
-                                <img src="images/circle.png" alt="🔍">
-                                <input type="text" required placeholder="Ник...">
-                            </div>
-                            <a href="#table" class="btn">Принять участие</a>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -104,51 +94,9 @@
                 <table class="table">
                     <caption>Вечная таблица подсчета слов</caption>
                     <thead>
-                        <tr>
-                            <th>№</th>
-                            <th>Ник</th>
-                            <th>Цель/день</th>
-                            <th>Пн <br> 23.03.2025</th>
-                            <th>Вт <br> 23.03.2025</th>
-                            <th>Ср <br> 23.03.2025</th>
-                            <th>Чт <br> 23.03.2025</th>
-                            <th>Пт <br> 23.03.2025</th>
-                            <th>Сб <br> 23.03.2025</th>
-                            <th>Вс <br> 23.03.2025</th>
-                            <th>Слов/неделя</th>
-                            <th>Цель/неделя</th>
-                        </tr>
                     </thead>
 
                     <tbody>
-                        <tr class="one">
-                            <td>1</td>
-                            <td>Minililliput</td>
-                            <td>1000</td>
-                            <td>0</td>
-                            <td>1324</td>
-                            <td>1234</td>
-                            <td>23</td>
-                            <td>456</td>
-                            <td>346</td>
-                            <td>4356</td>
-                            <td>7000</td>
-                            <td>7000</td>
-                        </tr>
-                        <tr class="two">
-                            <td>2</td>
-                            <td>Drygnil</td>
-                            <td>3000</td>
-                            <td>✔</td>
-                            <td>✔</td>
-                            <td>✔</td>
-                            <td>✔</td>
-                            <td>✘</td>
-                            <td>✔</td>
-                            <td>30</td>
-                            <td>21 000</td>
-                            <td>18 000 слов</td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -159,7 +107,7 @@
         <div class="leaderboard">
             <div class="container">
                 <div id="container">
-                    <img src="images/leaderboard.png" alt="leaderboard">
+                    <img src="static/images/leaderboard.png" alt="leaderboard">
                 </div>
             </div>
         </div>
@@ -172,12 +120,14 @@
         <div class="container">
             <div class="logo">
                 <a href="#header">
-                    <img src="images/logo.png" alt="Logo">
+                    <img src="static/images/logo.png" alt="Logo">
                 </a>
             </div>
         </div>
     </footer>
     </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 
