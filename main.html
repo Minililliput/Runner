@@ -16,7 +16,7 @@
 
 <body>
     <div class="page">
-        <header class="header">
+        <header class="header" id="header">
             <div class="container">
                 <div class="logo">
                     <img src="images/logo.png" alt="Logo">
@@ -81,91 +81,86 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- 
-    <table class="table" id="limb">
-        <div class="container">
-            <h1>Статистика участников</h1>
-            <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Ник</th>
-                    <th>Цель на день</th>
-                    <th>Пн <br> 23.03.2025</th>
-                    <th>Вт <br> 23.03.2025</th>
-                    <th>Ср <br> 23.03.2025</th>
-                    <th>Чт <br> 23.03.2025</th>
-                    <th>Пт <br> 23.03.2025</th>
-                    <th>Сб <br> 23.03.2025</th>
-                    <th>Вс <br> 23.03.2025</th>
-                    <th>Страницы</th>
-                    <th>Слова</th>
-                    <th>Цель на неделю</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>1</td>
-                    <td>Minililliput</td>
-                    <td>1000</td>
-                    <td>0</td>
-                    <td>1324</td>
-                    <td>1234</td>
-                    <td>23</td>
-                    <td>456</td>
-                    <td>346</td>
-                    <td>4356</td>
-                    <td>25</td>
-                    <td>7000</td>
-                    <td>7000</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Drygnil</td>
-                    <td>3000</td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>✘</td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>30</td>
-                    <td>21 000</td>
-                    <td>18 000 слов</td>
-                </tr>
-            </tbody>
-            <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Все</th>
-                    <th>Общая цель</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>123456</th>
-                    <th>70</th>
-                    <th>1000000</th>
-                    <th>100000</th>
-                </tr>
-            </thead>
-        </div>
-    </table> -->
-
-    <!-- 
-        <footer class="footer">
+        <div class="table-content">
             <div class="container">
-                <div class="logo">
-                    <img src="images/logo.png" alt="Logo">
+                <table class="table">
+                    <caption>Вечная таблица подсчета слов</caption>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Ник</th>
+                            <th>Цель/день</th>
+                            <th>Пн <br> 23.03.2025</th>
+                            <th>Вт <br> 23.03.2025</th>
+                            <th>Ср <br> 23.03.2025</th>
+                            <th>Чт <br> 23.03.2025</th>
+                            <th>Пт <br> 23.03.2025</th>
+                            <th>Сб <br> 23.03.2025</th>
+                            <th>Вс <br> 23.03.2025</th>
+                            <th>Слов/неделя</th>
+                            <th>Цель/неделя</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="one">
+                            <td>1</td>
+                            <td>Minililliput</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>1324</td>
+                            <td>1234</td>
+                            <td>23</td>
+                            <td>456</td>
+                            <td>346</td>
+                            <td>4356</td>
+                            <td>7000</td>
+                            <td>7000</td>
+                        </tr>
+                        <tr class="two">
+                            <td>2</td>
+                            <td>Drygnil</td>
+                            <td>3000</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>✘</td>
+                            <td>✔</td>
+                            <td>30</td>
+                            <td>21 000</td>
+                            <td>18 000 слов</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="leaderboard">
+            <div class="container">
+                <div id="container">
+                    <img src="images/leaderboard.png" alt="leaderboard">
                 </div>
             </div>
-        </footer>
-    </div> -->
+        </div>
+
+
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="logo">
+                <a href="#header">
+                    <img src="images/logo.png" alt="Logo">
+                </a>
+            </div>
+        </div>
+    </footer>
+    </div>
 
 </body>
 
