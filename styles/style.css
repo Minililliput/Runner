@@ -115,7 +115,7 @@ h6 {
     line-height: 130%;
 }
 
-.btn {
+.intro .btn {
     display: inline-block;
     background: #FF6B6B;
     color: white;
@@ -128,6 +128,11 @@ h6 {
     line-height: 100%;
     letter-spacing: 2%;
     margin-bottom: 137px;
+}
+
+.intro .btn:hover:not(:disabled) {
+    color: #fff;
+    background-color: #eb6666;
 }
 
 .participants {
@@ -210,12 +215,22 @@ h6 {
     margin-bottom: 10px;
 }
 
-.button-top,
-.button-left,
-.button-right {
+
+/* INPUT */
+.input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 440px;
+    height: 140px;
+
+    margin: 0 auto;
+}
+
+.input .input-cont {
     background-color: #ffffff;
-    margin: 20px auto;
-    width: 205px;
+    margin: 10px;
+    width: 200px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -223,12 +238,48 @@ h6 {
     border-radius: 15px;
 }
 
-.data input {
-    width: 100px;
-    margin-right: 20px;
-    flex: 1;
-    border: none;
+.input input {
+    background-color: #ffffff;
+    width: 150px;
+    height: 40px;
+    border: 1px solid #cccccc;
+    border-radius: 15px;
+
+    border: 1px solid #fff;
     outline: none;
+    font-weight: 500;
+    font-size: 16px;
+    color: #131A24;
+}
+
+.input .btn {
+    display: flex;
+    justify-content: center;
+    /* Центр по горизонтали */
+    align-items: center;
+    /* Центр по вертикали */
+
+    background: #FF6B6B;
+    color: white;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    margin: 10px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 2%;
+}
+
+.data .btn:hover:not(:disabled) {
+    color: #fff;
+    background-color: #eb6666;
+}
+
+::placeholder {
     font-family: "Caveat", sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -237,23 +288,6 @@ h6 {
 
 .data img {
     margin: 0 9px;
-}
-
-.button-btn {
-    display: flex;
-    margin: -25px 102px;
-}
-
-.button-left,
-.button-right {
-    background-color: #ffffff;
-    margin: 20px auto;
-    width: 155px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    border: 1px solid #cccccc;
-    border-radius: 15px;
 }
 
 
