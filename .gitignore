@@ -2,3 +2,4 @@ database/
 archive/
 .vscode/
 .gitignore
+requirements.txt
