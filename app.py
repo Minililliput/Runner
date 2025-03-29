@@ -8,7 +8,7 @@ import datetime
 
 app = Flask(__name__)
 
-path = "C:\\Users\\user\\Desktop\\Забег\\database\\забег.csv"
+path = "database\забег.csv"
 
 
 @app.route("/")
