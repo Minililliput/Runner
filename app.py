@@ -3,6 +3,8 @@ from scripts.BD import load_database, save_database, is_valid_number, DAYS
 from scripts.archive import is_new_week, archive_data, clear_database
 import datetime
 
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 app = Flask(__name__)
 
