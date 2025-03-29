@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIMB</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="static/images/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +73,17 @@
                             </div>
                             <div class="input-cont">
                                 <img src="static/images/calendar.png" alt="🔍">
-                                <input id="day" type="text" required placeholder="День...">
+                                <!-- <input id="day" type="text" required placeholder="День..."> -->
+                                <label for="day"></label>
+                                <select id="day" name="day">
+                                    <option value="ПН">Понедельник</option>
+                                    <option value="ВТ">Вторник</option>
+                                    <option value="СР">Среда</option>
+                                    <option value="ЧТ">Четверг</option>
+                                    <option value="ПТ">Пятница</option>
+                                    <option value="СБ">Суббота</option>
+                                    <option value="ВС">Воскресенье</option>
+                                </select>
                             </div>
                             <div class="input-cont">
                                 <img src="static/images/circle.png" alt="🔍">
@@ -104,11 +116,9 @@
 
         </div>
 
-        <div class="leaderboard">
+        <div class="canvas">
             <div class="container">
-                <div id="container">
-                    <img src="static/images/leaderboard.png" alt="leaderboard">
-                </div>
+                <canvas id="bar-chart" width="400" height="200"></canvas>
             </div>
         </div>
 

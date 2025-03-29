@@ -1,5 +1,8 @@
 from flask import Flask, render_template, jsonify, request
-from scripts.BD import load_database, save_database, DAYS
+from scripts.BD import load_database, save_database, is_valid_number, DAYS
+from scripts.archive import is_new_week, archive_data, clear_database
+import datetime
+
 
 app = Flask(__name__)
 
@@ -21,10 +24,41 @@ def get_data():
 
 @app.route("/submit_data", methods=["POST"])
 def submit_data():
+
+    # Последняя дата (можно сохранять эту информацию в базе или файле)
+    # last_week_date = datetime.date(2025, 3, 23)  # Пример
+
+    # if is_new_week(last_week_date):
+    #     archive_data(path)
+    #     clear_database(path)
+    #     # Обновляем последнюю дату недели
+    #     last_week_date = datetime.date.today()
+
     nickname = request.form["nickname"]
     day = request.form["day"]
     goal = request.form["goal"]
     word_count = request.form["word-count"]
+
+    # Проверяем корректность введенного никнейма
+    if not nickname or " " in nickname or len(nickname) <= 2:
+        return (
+            jsonify(
+                {
+                    "error": "Некорректный никнейм. Убедитесь, что он не содержит пробелов и длиннее 3 символов."
+                }
+            ),
+            400,
+        )
+
+    if not is_valid_number(word_count):
+        return (
+            jsonify(
+                {
+                    "error": "Количество слов (word_count) должно быть числом и не может быть отрицательным."
+                }
+            ),
+            400,
+        )
 
     # Загружаем текущие данные
     data = load_database(path)
@@ -33,10 +67,9 @@ def submit_data():
     participant_found = False
     for row in data:
         if row["Участник"] == nickname:
-            # Обновляем только тот день, который указан
-            for d in DAYS:
-                if not row[d]:  # Если день пустой, то ставим 0
-                    row[d] = "0"
+            # Обновляем цель, если введено новое значение (и оно не пустое)
+            if goal:
+                row["цель/день"] = goal
             row[day] = word_count  # Обновляем выбранный день
             participant_found = True
             break
@@ -47,7 +80,6 @@ def submit_data():
             "ID": str(len(data) + 1),  # Генерируем новый ID
             "Участник": nickname,
             "цель/день": goal,
-            **{day: "0" for day in DAYS},  # Заполняем все дни нулями
             "Слов/неделя": word_count,  # Начальное значение
             "Цель/неделя": int(goal) * 7,  # Цель/неделя
         }
@@ -56,6 +88,8 @@ def submit_data():
 
     # Сохраняем обновленные данные в CSV
     save_database(data, path)
+    # Загружаем текущие данные
+    data = load_database(path)
 
     return jsonify(data)
 
@@ -67,18 +101,20 @@ def get_nicknames():
     return jsonify(nicknames)
 
 
-@app.route("/get_goal_for_participant", methods=["GET"])
-def get_goal_for_participant():
-    nickname = request.args.get("nickname")  # Получаем имя участника из запроса
-    database = load_database(path)  # Указываем путь к CSV файлу
+@app.route("/get_graph_data", methods=["GET"])
+def get_graph_data():
+    data = load_database(path)
 
-    # Поиск участника в базе данных
-    for row in database:
-        if row["Участник"] == nickname:
-            return jsonify(
-                {"goal": row["цель/день"]}
-            )  # Возвращаем цель/день для найденного участника
-    return jsonify({"goal": ""})
+    # Подготавливаем данные для графика
+    graph_data = []
+    for row in data:
+        nickname = row["Участник"]
+        days_data = {
+            day: int(row[day]) for day in DAYS
+        }  # Собираем данные по дням недели
+        graph_data.append({"nickname": nickname, "days": days_data})
+
+    return jsonify(graph_data)
 
 
 if __name__ == "__main__":

@@ -215,6 +215,10 @@ h6 {
     margin-bottom: 10px;
 }
 
+.data .rules-left .text h3 {
+    padding-top: 40px;
+}
+
 /* TEXT */
 
 .text .btn {
@@ -279,7 +283,8 @@ h6 {
     background-color: #eb6666;
 }
 
-::placeholder {
+::placeholder,
+.data label {
     font-family: "Caveat", sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -301,7 +306,7 @@ h6 {
     left: 0;
     right: 0;
     background-color: white;
-    border: 1px solid #f8f6f6;
+    border: 1px solid #e1e1e1;
     border-radius: 15px;
     margin: 0;
     padding: 0;
@@ -322,6 +327,15 @@ h6 {
 
 .dropdown-list li:hover {
     background-color: #f0f0f0;
+}
+
+.data select {
+    background-color: #fff;
+    border: none;
+    margin: 0 auto;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
 }
 
 
@@ -389,13 +403,13 @@ h6 {
     border: none;
 }
 
-/* LEADERBOARD */
-.leaderboard {
+/* CANVAS */
+.canvas {
     display: flex;
     justify-content: center;
 }
 
-.leaderboard #container {
+.canvas .container {
     width: 100%;
     max-width: 1230px;
     margin: 60px 0;

@@ -70,3 +70,11 @@ def save_database(database: list[str, dict], path: str) -> None:
         writer.writeheader()
         # Записываем строки данных
         writer.writerows(database)
+
+
+# Проверяем, являются ли "goal" и "word_count" числами
+def is_valid_number(value):
+    try:
+        return int(value) >= 0  # Проверяем, что число не отрицательное
+    except ValueError:
+        return False

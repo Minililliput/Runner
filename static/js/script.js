@@ -41,39 +41,51 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function clearInputs() {
+        document.getElementById("nickname").value = "";
+        document.getElementById("day").value = "ПН";
+        document.getElementById("goal").value = "";
+        document.getElementById("word-count").value = "";
+    }
+
     // Загружаем данные при загрузке страницы
     loadData();
 
-    // Обработчик отправки формы
-    const submitButton = document.getElementById("submit");
+    document.getElementById("submit").addEventListener("click", function (event) {
+        event.preventDefault();
 
-    submitButton.addEventListener("click", function (event) {
-        event.preventDefault(); // Останавливаем стандартное поведение кнопки
-
-        const nickname = document.getElementById("nickname").value;
-        const day = document.getElementById("day").value;  // День (например, ПН, ВТ, ...)
+        const nickname = document.getElementById("nickname").value.trim();
+        const day = document.getElementById("day").value;
         const goal = document.getElementById("goal").value;
         const wordCount = document.getElementById("word-count").value;
 
-        // Создаем объект с данными, где все дни кроме выбранного будут равны "0"
         const formData = new FormData();
         formData.append("nickname", nickname);
-        formData.append("day", day);  // Отправляем день
+        formData.append("day", day);
         formData.append("goal", goal);
         formData.append("word-count", wordCount);
 
-        // Отправляем данные на сервер с помощью fetch
         fetch("/submit_data", {
             method: "POST",
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                // После успешного ответа, обновляем таблицу с новыми данными
-                updateTable(data);
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
             })
-            .catch(error => console.error("Ошибка при отправке данных:", error));
+            .then(data => {
+                updateTable(data); // Успешный запрос — обновляем таблицу
+            })
+            .catch(error => {
+                console.error("Ошибка при отправке данных:", error);
+                alert(error.error || "Произошла ошибка, попробуйте снова!");
+                loadData(); // Грузим актуальные данные, чтобы таблица не исчезала
+            });
+        clearInputs();
     });
+
 
 
     // Загружаем никнеймы с сервера при фокусировке на поле ввода
@@ -105,56 +117,86 @@ document.addEventListener("DOMContentLoaded", function () {
             nicknameList.style.display = 'none';
         }
     });
+
+    // Очищаем поля при загрузке страницы
+    clearInputs();
 });
 
-document.getElementById('nickname').addEventListener('input', function () {
-    let inputValue = this.value.toLowerCase();
-    let nicknameList = document.getElementById('nickname-list');
-    nicknameList.innerHTML = '';  // Очищаем список
 
-    // Запрашиваем никнеймы с сервера
-    fetch('/get_nicknames')
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Получаем данные с сервера
+    fetch('/get_graph_data')
         .then(response => response.json())
-        .then(nicknames => {
-            // Фильтруем никнеймы по введенному тексту
-            let filteredNicks = nicknames.filter(nick => nick.toLowerCase().startsWith(inputValue));
+        .then(data => {
+            const labels = data.map(item => item.nickname);  // Ники участников
+            const daysOfWeek = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
 
-            // Заполняем список отфильтрованными никами
-            filteredNicks.forEach(nick => {
-                let li = document.createElement('li');
-                li.textContent = nick;
-                li.addEventListener('click', function () {
-                    document.getElementById('nickname').value = nick;
-                    nicknameList.style.display = 'none';  // Скрыть список после выбора
+            // Цвета для столбцов по дням недели
+            const colors = [
+                'FF6B6B', // ПН
+                'E8A5E9', // ВТ
+                'F6DDE1', // СР
+                'FF9090', // ЧТ
+                'FA3353', // ПТ
+                'FAB8DF', // СБ
+                'CD547F'  // ВС
+            ];
 
-                    // После выбора никнейма, получаем цель/день
-                    fetch(`/get_goal_for_participant?nickname=${nick}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Не удалось получить данные, сервер вернул ошибку');
-                            }
-                            return response.json(); // Переходим к преобразованию ответа в JSON
-                        })
-                        .then(data => {
-                            // Если goal отсутствует или пусто, можем поставить дефолтное значение
-                            document.getElementById('goal').value = data.goal || '';
-                        })
-                        .catch(error => {
-                            console.error('Ошибка при получении цели/дня:', error);
-                            // Можем показать пользователю ошибку на UI, если нужно
-                        });
-                });
-                nicknameList.appendChild(li);
+            // Данные для графика, где каждый участник будет иметь серию столбцов (по дням недели)
+            const datasets = daysOfWeek.map((day, index) => {
+                return {
+                    label: day,
+                    data: data.map(item => item.days[day] || 0),  // Для каждого участника для этого дня
+                    backgroundColor: `#${colors[index]}`,  // Применяем соответствующий цвет для каждого дня
+                    borderColor: `#131A24`,
+                    borderWidth: 2,
+                    barThickness: 9,  // Устанавливаем ширину столбца
+                };
             });
 
-            // Показываем или скрываем список в зависимости от наличия значений
-            if (filteredNicks.length > 0) {
-                nicknameList.style.display = 'block';
-            } else {
-                nicknameList.style.display = 'none';
-            }
+            // Создаем график
+            const ctx = document.getElementById('bar-chart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,  // Ники участников
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#79787c',  // Цвет сетки по оси Y
+                                borderWidth: 1,
+                                lineWidth: 1, // Толщина линии сетки
+                                drawBorder: false, // Отключаем границу по оси Y
+                                drawOnChartArea: true, // Рисуем сетку
+                                drawTicks: true, // Отключаем риски
+                                tickLength: 5, // Убираем длину рисок
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: '#79787c',  // Цвет сетки по оси X
+                                borderWidth: 2,
+                                lineWidth: 1, // Толщина линии сетки
+                                drawBorder: false, // Отключаем границу по оси X
+                                drawOnChartArea: true, // Рисуем сетку
+                                drawTicks: true, // Отключаем риски
+                                tickLength: 10, // Убираем длину рисок
+                            },
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        }
+                    }
+                }
+            });
+            updateGraph(data)
+
         })
-        .catch(error => {
-            console.error('Ошибка при получении данных:', error);
-        });
+        .catch(error => console.error('Ошибка при получении данных:', error));
 });
