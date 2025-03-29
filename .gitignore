@@ -1,4 +1,4 @@
-database
-archive
-.vscode
+database/
+archive/
+.vscode/
 .gitignore
